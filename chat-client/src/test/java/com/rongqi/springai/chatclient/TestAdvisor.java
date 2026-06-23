@@ -56,6 +56,7 @@ public class TestAdvisor {
     @Test
     public void testSafeGuardAdvisorCustomResponse(){
         String callback = chatClient.prompt()
+                //其中order为拦截器的优先级，从小到大，-1为最高级
                 .advisors(new SafeGuardAdvisor(List.of("cnm"), CUSTOM_FAILURE_RESPONSE, 0))
                 .user("你知道，足球运动中退钱哥的梗吗？就是cnm退钱")
                 .call()
@@ -82,9 +83,10 @@ public class TestAdvisor {
     public void testReReadingAdvisor() {
         String callback = chatClient.prompt()
                 .user("你好")
+                //日志打印拦截器，会在开始和结束的时候打印日志
                 .advisors(new SimpleLoggerAdvisor(),
-                        new ReReadingAdvisor(),
-                        new SimpleLoggerAdvisor())
+                        //重读增强，例如你输入了 "你好"，它会自动将其改写为类似 "你好 \n Read the question again: 你好" 的格式再发给大模型
+                        new ReReadingAdvisor())
                 .call()
                 .content();
 

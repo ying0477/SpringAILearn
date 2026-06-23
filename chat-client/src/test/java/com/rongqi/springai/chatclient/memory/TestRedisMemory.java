@@ -1,6 +1,6 @@
 package com.rongqi.springai.chatclient.memory;
 
-import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
+import org.springframework.ai.chat.model.ChatModel;
 import com.alibaba.cloud.ai.memory.redis.RedisChatMemoryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ public class TestRedisMemory {
     ChatClient chatClient;
 
     @BeforeEach
-    public void setup(@Autowired DashScopeChatModel chatModel,
+    public void setup(@Autowired ChatModel chatModel,
                       @Autowired ChatMemory chatMemory) {
 
         chatClient = ChatClient
@@ -33,7 +33,7 @@ public class TestRedisMemory {
     @Test
     public void testJDBCAdvisor() {
         String content = chatClient.prompt()
-                .user("你好我是荣启")
+                .user("你好我是ying")
 //                .advisors(new ReReadingAdvisor())
                 .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, "1"))
                 .call()

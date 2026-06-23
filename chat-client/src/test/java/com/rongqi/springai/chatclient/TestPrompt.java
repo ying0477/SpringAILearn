@@ -28,7 +28,7 @@ public class TestPrompt {
 
         String callback = chatClient.prompt()
                 .user("你好，你知道我是谁吗？")
-                .system(p -> p.param("name", "rongqi").param("age", 18))
+                .system(p -> p.param("name", "ying").param("age", 18))
                 .call().content();
 
         System.out.println(callback);
@@ -56,7 +56,7 @@ public class TestPrompt {
 
         String callback = chatClient.prompt()
                 .user("你好，你知道我是谁吗？")
-                .system(p -> p.param("name", "rongqi").param("age", 18))
+                .system(p -> p.param("name", "ying").param("age", 18))
                 .call().content();
 
         System.out.println(callback);
@@ -84,7 +84,7 @@ public class TestPrompt {
                         当前的用户问题为{question}
                         """).param("question", "你好，请问你能做点什么？"))
 //                .system("")  //只为当前对话设置系统提示词
-                .system(p -> p.param("name","rongqi").param("age", "18"))
+                .system(p -> p.param("name","ying").param("age", "18"))
                 .call().content();
         System.out.println(content);
     }
@@ -102,7 +102,7 @@ public class TestPrompt {
         String content = client.prompt()
                 .user("你好，你知道我是谁吗")
 //                .system("")  //只为当前对话设置系统提示词
-                .system(p -> p.param("name","rongqi").param("age", "18"))
+                .system(p -> p.param("name","ying").param("age", "18"))
                 .call().content();
         System.out.println(content);
 

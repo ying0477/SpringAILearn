@@ -1,6 +1,6 @@
 package com.rongqi.springai.chatclient;
 
-import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
+import org.springframework.ai.chat.model.ChatModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.client.ChatClient;
@@ -21,7 +21,7 @@ public class TestStructuredOutPut {
     ChatClient chatClient;
 
     @BeforeEach
-    public void init(@Autowired DashScopeChatModel chatModel) {
+    public void init(@Autowired ChatModel chatModel) {
         chatClient = ChatClient.builder(chatModel).build();
 
     }
@@ -73,7 +73,7 @@ public class TestStructuredOutPut {
      * 根据结构化输出类型创建转换器
      */
     @Test
-    public void testLowEntityOut(@Autowired DashScopeChatModel chatModel) {
+    public void testLowEntityOut(@Autowired ChatModel chatModel) {
         BeanOutputConverter<Address> converter = new BeanOutputConverter<>(Address.class);
         // 调用getFormat()获得映射
         String format = converter.getFormat();
